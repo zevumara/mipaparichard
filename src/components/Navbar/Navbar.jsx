@@ -1,29 +1,5 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
 import Logo from "../../assets/logo.webp";
-
-const NavbarLinks = [
-  {
-    id: 1,
-    title: "Inicio",
-    link: "#",
-  },
-  {
-    id: 2,
-    title: "El accidente",
-    link: "#",
-  },
-  {
-    id: 3,
-    title: "Las secuelas",
-    link: "#",
-  },
-  {
-    id: 4,
-    title: "La recuperación",
-    link: "#",
-  },
-];
 
 const Navbar = () => {
   return (

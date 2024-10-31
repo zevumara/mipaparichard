@@ -73,7 +73,7 @@ const Hero = () => {
         <img src={MiPapaRichard} className="mt-4 rounded shadow-md" />
         <button
           onClick={handleShow}
-          className="bg-red-600 w-full my-6 py-2 text-white font-bold rounded text-lg flex justify-center items-center shadow-md"
+          className="bg-red-600 w-full my-6 py-2 text-white font-bold rounded text-2xl flex justify-center items-center shadow-md"
         >
           Donar <FaHeart className="ml-2" />
         </button>
@@ -160,14 +160,14 @@ const Hero = () => {
       <div className="flex-no-wrap fixed bottom-0 flex w-full items-center justify-center pb-4 z-10">
         <button
           onClick={handleShow}
-          className="bg-sky-600 px-6 py-2 text-white font-bold rounded text-lg flex justify-center items-center shadow-md"
+          className="bg-sky-600 px-6 py-2 text-white font-bold rounded text-2xl flex justify-center items-center shadow-md"
         >
           Donar <FaHeart className="ml-2" />
         </button>
       </div>
       {isVisible && (
         <div className="bg-white/80 backdrop-blur w-full h-full fixed z-20 top-0 left-0 overflow-y-auto">
-          <div className="container h-full p-4 text-sm flex flex-col justify-center gap-6 relative max-w-[720px]">
+          <div className="container h-full p-4 flex flex-col justify-center gap-6 relative max-w-[720px]">
             <div
               onClick={handleClose}
               className="bg-black text-white cursor-pointer text-center absolute top-4 right-4 px-2 pt-1 pb-1 opacity-50 rounded"
@@ -178,7 +178,7 @@ const Hero = () => {
               <h2 className="text-xl font-bold flex items-center">
                 <span class="fi fi-ar mr-2 rounded-sm shadow" /> Donaciones en Argentina
               </h2>
-              <div className="px-3 py-2 my-4 bg-white text-base shadow">
+              <div className="px-3 py-2 my-4 bg-white shadow">
                 <p>
                   <strong>Alias:</strong> mi.papa.richard
                 </p>
@@ -204,7 +204,7 @@ const Hero = () => {
               <h2 className="text-xl font-bold flex items-center">
                 <span class="fi fi-uy mr-2 rounded-sm shadow" /> Donaciones en Uruguay
               </h2>
-              <div className="px-3 py-2 my-4 bg-white text-base shadow">
+              <div className="px-3 py-2 my-4 bg-white shadow">
                 <p>
                   <strong>Número de cuenta:</strong> 11059473900001
                 </p>
@@ -226,7 +226,7 @@ const Hero = () => {
               <h2 className="text-xl font-bold flex items-center">
                 <span class="fi fi-eu mr-2 rounded-sm shadow" /> Donaciones internacionales
               </h2>
-              <div className="px-3 py-2 my-4 bg-white text-base shadow">
+              <div className="px-3 py-2 my-4 bg-white shadow">
                 <strong>PayPal:</strong>{" "}
                 <a
                   href="https://paypal.me/mipaparichard"
