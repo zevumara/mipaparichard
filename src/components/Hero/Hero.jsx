@@ -3,12 +3,14 @@ import { FaHeart } from "react-icons/fa";
 import ElObservador from "../../assets/el-observador.webp";
 import Subrayado from "../../assets/subrayado.webp";
 import MiPapaRichard from "../../assets/mipaparichard.webp";
-import Secuelas from "../../assets/mipaparichard_secuelas.webp";
 import { FaRegFilePdf } from "react-icons/fa6";
 import { useState } from "react";
+import { FaShareAlt } from "react-icons/fa";
+import { FaCopy } from "react-icons/fa6";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   const handleShow = () => setIsVisible(true);
   const handleClose = () => setIsVisible(false);
@@ -24,6 +26,34 @@ const Hero = () => {
     document.body.appendChild(link);
     link.click();
     link.remove();
+  };
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Mi papá Richard necesita de tu ayuda",
+          text: "Mi papá Richard necesita de tu ayuda. Richard Alonso Godoy, de 46 años, iba camino a su trabajo cuando fue atropellado por un patrullero de la policía que circulaba sin sirena y en contramano a muy altas velocidades [...]",
+          url: window.location.href,
+        });
+        console.log("Contenido compartido exitosamente");
+      } catch (error) {
+        console.error("Error al compartir:", error);
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert("La URL fue copiada al portapapeles.");
+    }
+  };
+
+  const handleCopy = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    } catch (error) {
+      console.error("Error al copiar:", error);
+    }
   };
 
   return (
@@ -129,8 +159,7 @@ const Hero = () => {
             este estado me destroza...
           </p>
         </div>
-        <img src={Secuelas} className="mt-4 rounded shadow-md" />
-        <div className="space-y-4 mt-6 pb-16">
+        <div className="space-y-4 mt-6 pb-[120px]">
           <h2 className="font-['Caveat'] text-5xl">La recuperación</h2>
           <p>
             El 19 de septiembre de 2024 nos visitó un médico especialista del{" "}
@@ -157,12 +186,18 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <div className="flex-no-wrap fixed bottom-0 flex w-full items-center justify-center pb-4 z-10">
+      <div className="flex fixed bottom-0 flex-col gap-2 w-full items-center justify-center pb-4 z-10">
         <button
           onClick={handleShow}
-          className="bg-sky-600 px-6 py-2 text-white font-bold rounded text-2xl flex justify-center items-center shadow-md"
+          className="bg-sky-600 px-6 py-2 text-white min-w-[160px] font-bold rounded text-2xl flex justify-center items-center shadow-md"
         >
           Donar <FaHeart className="ml-2" />
+        </button>
+        <button
+          onClick={handleShare}
+          className="bg-green-600 px-6 py-2 text-white min-w-[160px] font-bold rounded text-lg flex justify-center items-center shadow-md"
+        >
+          Compartir <FaShareAlt className="ml-2" />
         </button>
       </div>
       {isVisible && (
@@ -181,9 +216,17 @@ const Hero = () => {
               <div className="px-3 py-2 my-4 bg-white shadow">
                 <p>
                   <strong>Alias:</strong> mi.papa.richard
+                  <FaCopy
+                    onClick={() => handleCopy("mi.papa.richard")}
+                    className="ml-2 mt-[-2px] cursor-pointer inline-block"
+                  />
                 </p>
                 <p>
                   <strong>CVU:</strong> 0000003100060243814400
+                  <FaCopy
+                    onClick={() => handleCopy("0000003100060243814400")}
+                    className="ml-2 mt-[-2px] cursor-pointer inline-block"
+                  />
                 </p>
                 <p>
                   <strong>Maria Agustina Alonso</strong>
@@ -207,6 +250,10 @@ const Hero = () => {
               <div className="px-3 py-2 my-4 bg-white shadow">
                 <p>
                   <strong>Número de cuenta:</strong> 11059473900001
+                  <FaCopy
+                    onClick={() => handleCopy("11059473900001")}
+                    className="ml-2 mt-[-2px] cursor-pointer inline-block"
+                  />
                 </p>
                 <p>
                   <strong>Banco:</strong> Banco República (BROU)
@@ -244,6 +291,11 @@ const Hero = () => {
               </a>
             </div>
           </div>
+          {copySuccess && (
+            <div className="text-white mt-2 absolute z-50 top-0 w-full h-10 bottom-6 flex justify-center">
+              <div className="bg-black p-2">¡Copiado al portapapeles!</div>
+            </div>
+          )}
         </div>
       )}
     </>
